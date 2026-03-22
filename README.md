@@ -53,17 +53,7 @@ class Blockchain {
 
 ![longestchain](https://user-images.githubusercontent.com/571810/33043509-b40cb21c-ce13-11e7-8fb2-20f3932e85d1.gif)
 
-So given a tree, the longest chain represents our current view of which history of blocks, and thus which representation of data is the one we deem valid.
 
-## Step 3: Not a free-for-all
-
-[Link to Step 3 Demo](https://blockchain-step3.nambrot.com/)
-
-If real blockchains worked like Step 2, then it would be a chaotic free-for-all where nodes just can abitrarily fork a chain of blocks and add basically infinitely many blocks to it, to make it the longest chain and thus THE blockchain (as you have seen in the above GIF). That would mean that anyone could just change history and effectively mutate past data. How do we avoid that situation?
-
-By making it difficult to add a block with a computational puzzle. Instead of accepting any arbitrary block, part of the concensus rules of a blockchain mandate what blocks are valid and which ones aren't. In this case, we want to make adding blocks resource-intensive. The most common way of doing so, and probably the most admirable piece of the original Bitcoin whitepaper), is to pair this with proof-of-work (POW). POW allows us to ensure that nodes who want to add blocks to the tree to proof that they had to expend considerable effort. Since the SHA256 hash of a block is (hopefully) truly random, we can mandate that the hash ends in a certain number of '0's (in Bitcoin the requirement is for it to start with a certain number of '0's).
-
-```javascript
 class Block {
   isValid() {
     return this.parentHash === 'root' ||
